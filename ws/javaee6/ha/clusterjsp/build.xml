@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<project name="clusterjsp" default="all" basedir=".">
+
+    <property name="cluster.name" value="cluster"/>
+    <property name="deployment.target" value="${cluster.name}"/>
+    <property name="availabilityenabled" value="true"/>
+
+    <property name="is.ear.module" value="true" />
+    <property name="bp-project.dir" value="../../../bp-project"/>
+
+    <import file="${bp-project.dir}/main.xml"/>
+
+    <path id="ear-components">
+        <filelist dir="./clusterjsp-war" files="build.xml" />
+    </path>
+
+    <target name="setup">
+        <antcall target="create-cluster"/>
+        <antcall target="create-local-instance">
+            <param name="instance.name" value="instance1"/>
+        </antcall>
+        <antcall target="create-local-instance">
+            <param name="instance.name" value="instance2"/>
+        </antcall>
+        <antcall target="start-cluster" />
+    </target>
+
+    <target name="unsetup">
+        <antcall target="stop-cluster"/>
+        <antcall target="delete-local-instance">
+            <param name="instance.name" value="instance1"/>
+        </antcall>
+        <antcall target="delete-local-instance">
+            <param name="instance.name" value="instance2"/>
+        </antcall>
+        <antcall target="delete-cluster" />
+    </target>
+
+    <target name="stop-instance1">
+				<antcall target="stop-instance">
+		          <param name="instance.name" value="instance1"/>
+		    </antcall>
+    </target>
+
+    <macrodef name="asadmin-get">
+        <attribute name="pattern"/>
+        <attribute name="result"/>
+        <sequential>
+            <exec executable="${asadmin}" output="asadmin-get-output">
+                <arg line="get"/>
+                <arg line=" --user ${javaee.server.username}" />
+                <arg line=" --passwordfile '${javaee.server.passwordfile}'" />
+                <arg line=" --host ${javaee.server.name}" />
+                <arg line=" --port ${javaee.adminserver.port}" />
+                <arg line=" @{pattern}" />
+            </exec>
+            <replaceregexp file="asadmin-get-output"
+                   match="(.*)=(.*)"
+                   replace="@{result}=\2"
+                   byline="true" />
+            <loadproperties srcfile="asadmin-get-output"/>
+            <delete file="asadmin-get-output"/>
+        </sequential>
+    </macrodef>
+
+    <target name="-pre-deploy">
+        <asadmin-get result="http-port-1"
+            pattern="instance1.system-property.HTTP_LISTENER_PORT.value"/>
+        <property name="launch.url-1"
+            value="http://${javaee.server.name}:${http-port-1}/${run.uri}"/>
+        <asadmin-get result="http-port-2"
+            pattern="instance2.system-property.HTTP_LISTENER_PORT.value" />
+        <property name="launch.url-2"
+            value="http://${javaee.server.name}:${http-port-2}/${run.uri}"/>
+        <property name="launch.url" 
+            value="${launch.url-1} or ${launch.url-2}" />
+        <property name="app.url" 
+            value="${launch.url-1} and ${launch.url-2}" />
+    </target>
+
+    <target name="all" unless="netbeans.home">
+				<antcall target="setup"/>
+				<antcall target="default"/>
+        <antcall target="deploy"/>
+    </target>
+
+</project>

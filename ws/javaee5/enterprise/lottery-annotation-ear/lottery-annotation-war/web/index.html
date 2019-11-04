@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<html>
+  <body>
+    <form method="post" action="PlayLotteryServlet">
+      <center>
+
+        <h2>Simple Annotation Application</h2> 
+
+        <table cols="2" width="65%">
+          <tbody>
+            <tr>
+              <select name="lottery_name">
+                <option value="Super Lotto">Super Lotto</option>
+                <option value="Mega Million">Mega Million</option>
+                <option value="Big Spin">Big Spin</option>
+                <option value="Daily Derby">Daily Derby</option>
+                <option value="Fantasy 5">Fantasy 5</option>
+              </select>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><input value="Quick Pick" name="quick_pick" type="submit"></p>
+        When you click Quick Pick, your lottery number will be generated.
+
+      </center>
+    </form>
+  </body>
+</html>

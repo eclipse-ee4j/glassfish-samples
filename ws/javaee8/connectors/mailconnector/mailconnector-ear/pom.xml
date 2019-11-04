@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+      	<groupId>org.glassfish-samples</groupId>
+        <artifactId>mailconnector-app</artifactId>
+        <version>5.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>mailconnector-ear</artifactId>
+    <version>5.0-SNAPSHOT</version>
+    <packaging>ear</packaging>
+
+    <name>Mail Enterprise Application</name>
+    <properties>
+        <cargo.container.install>${project.build.directory}/cargo/installs</cargo.container.install>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <finalName>mailconnector-ear</finalName>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <ejbModule>
+                    	      <groupId>org.glassfish-samples</groupId>
+                            <artifactId>mailconnector-mdb</artifactId>
+                            <bundleFileName>mailconnector-mdb.jar</bundleFileName>
+                        </ejbModule>
+                        <webModule>
+                    	      <groupId>org.glassfish-samples</groupId>
+                            <artifactId>mailconnector-web</artifactId>
+                            <bundleFileName>mailconnector-web.war</bundleFileName>
+                        </webModule>
+                        <rarModule>
+                    	      <groupId>org.glassfish-samples</groupId>
+                            <artifactId>mailconnector-ra</artifactId>
+                            <bundleFileName>mailconnector.rar</bundleFileName>
+                        </rarModule>
+                    </modules>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <phase/>
+                        <configuration>
+                            <target name="create-users">
+                                <property name="gf4.bin.dir" value="${cargo.container.install}/latest-glassfish/glassfish4/glassfish/bin"/>
+                                <property name="admin.password.file" value="${cargo.container.install}/glassfish/domains/password.properties"/>
+                                <ant antfile="gf-users-admin.xml" target="create-users"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+               <groupId>org.codehaus.cargo</groupId>
+               <artifactId>cargo-maven2-plugin</artifactId>
+
+               <configuration>
+                 <container>
+                    <containerId>${integration.container.id}</containerId>
+                    <type>installed</type>
+                    <home>${cargo.container.install}/latest-glassfish/glassfish4</home>
+                    <zipUrlInstaller>
+                        <url>${cargo.maven.containerUrl}</url>
+                    </zipUrlInstaller>
+                 </container>
+                 <deployables>
+                    <deployable>
+                      <location>${project.build.directory}/mailconnector-ear.ear</location>
+                    </deployable>
+                 </deployables>
+
+                  <configuration>
+                     <type>standalone</type>
+                     <home>${cargo.container.install}/glassfish/domains</home>
+                  </configuration>
+
+               </configuration>
+            </plugin>
+        </plugins>
+    </build>
+  
+    <dependencies>
+        <dependency>
+          	<groupId>org.glassfish-samples</groupId>
+            <artifactId>mailconnector-mdb</artifactId>
+            <version>5.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+          	<groupId>org.glassfish-samples</groupId>
+            <artifactId>mailconnector-web</artifactId>
+            <version>5.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+          	<groupId>org.glassfish-samples</groupId>
+            <artifactId>mailconnector-ra</artifactId>
+            <version>5.0-SNAPSHOT</version>
+            <type>rar</type>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<project name="hello-jaxws" default="all" basedir=".">
+
+    <import file="../../../bp-project/web-services-management.xml"/>
+    
+    <target name="set-monitoring-level">
+	<antcall target="enable-monitoring">
+		<param name="monitoring.level" value="HIGH"/>
+		<param name="webservice.endpoint" value="endpoint_Hello#Hello"/>
+	</antcall>
+    </target>
+
+    <target name="get-stats" depends="set-monitoring-level">
+	<antcall target="get-monitoring-stats">
+		<param name="dotted.name" value="server.applications.endpoint_Hello.Hello.webservice-endpoint.*"/>
+	</antcall>
+    </target>
+
+    <target name="add-transformation-rule">
+	<antcall target="add-request-transformation-rule">
+		<param name="webservice.endpoint" value="endpoint_Hello#Hello"/>
+		<param name="rulefile" value="./req.xsl"/>
+		<param name="transformation.rulename" value="sample_rule"/>
+	</antcall>
+	<antcall target="list-transformation-rules"/>
+    </target>
+
+    <target name="delete-transformation-rule">
+	<antcall target="delete-request-transformation-rule">
+		<param name="webservice.endpoint" value="endpoint_Hello#Hello"/>
+		<param name="transformation.rulename" value="sample_rule"/>
+	</antcall>
+	<antcall target="list-transformation-rules"/>
+    </target>
+
+    <target name="list-transformation-rules">
+	<antcall target="list-request-transformation-rules">
+		<param name="webservice.endpoint" value="endpoint_Hello#Hello"/>
+	</antcall>
+    </target>
+
+</project>

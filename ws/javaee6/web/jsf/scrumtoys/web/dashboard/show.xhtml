@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:scrum="http://java.sun.com/jsf/composite/components" >
+
+    <ui:composition template="/template.xhtml">
+        <f:metadata>
+            <f:viewParam name="skin" value="#{skinUrlManager.skin}" />
+            <f:event type="preRenderView" listener="#{skinUrlManager.update}" />
+        </f:metadata>
+        <ui:define name="pageTitle">
+            <h:outputText value="#{i18n['story.show.title']}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="navigationBar">
+            <h:commandLink   immediate="true" action="/project/show" value="#{i18n['navigation.projects']}"></h:commandLink>
+            <h:outputText value="#{i18n['navigation.separtor']}"></h:outputText>
+            <h:commandLink   immediate="true" action="/project/edit"  value="#{sprintManager.project.name}"></h:commandLink>
+            <h:outputText value="#{i18n['navigation.separtor']}"></h:outputText>
+            <h:commandLink   immediate="true" action="/sprint/show" value="#{i18n['navigation.sprints']}"></h:commandLink>
+            <h:outputText value="#{i18n['navigation.separtor']}"></h:outputText>
+            <h:outputText value="#{i18n['sprint.edit.form.title']}" styleClass="tituloForm"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form id="frmListStories">
+                <h:panelGrid columns="5">                    
+                    <h:dataTable value="#{dashboardManager.stories}" var="story" rendered="#{dashboardManager.stories.rowCount > 0}" border="0" id="dtStories" >
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="STORIES" /></f:facet>
+                            <scrum:bigPostit>
+                                <ui:param name="postitLabel" value=""></ui:param>
+                                <ui:param name="postitText" value="#{story.name}"></ui:param>
+                            </scrum:bigPostit>
+                        </h:column>
+                    </h:dataTable>
+
+                    <h:dataTable  value="#{dashboardManager.toDoTasks}" var="task" title="Todo Tasks">
+                        <f:facet name="header"><h:outputText value="TO DO" /></f:facet>
+                        <h:column>
+                            <scrum:postit action="#{dashboardManager.editToDoTask}">
+                                <ui:param name="postitLabel" value=""></ui:param>
+                                <ui:param name="postitText" value="#{task.name}"></ui:param>
+                            </scrum:postit>
+                        </h:column>
+                    </h:dataTable>
+
+                    <h:dataTable  value="#{dashboardManager.workingTasks}" var="task" title="Working Tasks">
+                        <f:facet name="header"><h:outputText value="DOING" /></f:facet>
+                        <h:column>
+                            <scrum:postit action="#{dashboardManager.editWorkingTask}">
+                                <ui:param name="postitLabel" value=""></ui:param>
+                                <ui:param name="postitText" value="#{task.name}"></ui:param>
+                            </scrum:postit>
+                        </h:column>
+                    </h:dataTable>
+
+                    <h:dataTable  value="#{dashboardManager.doneTasks}" var="task" title="Done Tasks">
+                        <f:facet name="header"><h:outputText value="DONE" /></f:facet>
+                        <h:column>
+                            <scrum:postit action="#{dashboardManager.editDoneTask}">
+                                <ui:param name="postitLabel" value=""></ui:param>
+                                <ui:param name="postitText" value="#{task.name}"></ui:param>
+                            </scrum:postit>
+                        </h:column>
+                    </h:dataTable>
+
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+
+<project name="hello-webserviceref-test" default="runtest" basedir=".">
+    
+    <property name="classesdir" value="../build"/>
+    <property file="../../../../bp-project/build.properties"/>
+    <property file="../../../../bp-project/app-server.properties"/>
+    <property file="${user.home}/build.properties"/>
+
+    <path id="classpath">
+        <pathelement location="${javaee.home}/lib/j2ee.jar"/>
+        <pathelement location="${classesdir}"/>
+    </path>
+
+    <target name="runtime">
+        <subant target="default" verbose="true">
+            <fileset dir=".." includes="build.xml"/>
+        </subant>
+        <subant target="deploy" verbose="true">
+            <fileset dir=".." includes="build.xml"/>
+        </subant>
+        <subant target="default" verbose="true">
+            <fileset dir="../hello-webserviceref-webclient" includes="build.xml"/>
+        </subant>
+        <subant target="deploy" verbose="true">
+            <fileset dir="../hello-webserviceref-webclient" includes="build.xml"/>
+        </subant>
+    </target>
+
+    <target name="compile" depends="runtime">
+        <javac srcdir="./src/java" destdir="${classesdir}">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <import file="../../../../bp-project/test.xml"/>
+    <target name="runtest" depends="compile">
+        <echo message="Testing ${module.name} ..."/>
+        <echo message="Running the unit test for hello-webserviceref"/>
+        <java classname="org.junit.runner.JUnitCore" fork="on">
+            <arg value="test.Hello_WebServiceRef_Test"/>
+            <classpath refid="classpath"/>
+            <sysproperty key="java.endorsed.dirs" value="${javaee.home}/lib/endorsed"/>
+            <sysproperty key="javaee.server.name" value="${javaee.server.name}"/>
+            <sysproperty key="javaee.server.port" value="${javaee.server.port}"/>
+        </java>
+        </target>
+
+</project>

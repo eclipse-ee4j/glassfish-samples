@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<purchaseOrder orderDate="1999-10-20">
+    <shipTo country="US">
+        <name>Alice Smith</name>
+        <street>123 Maple Street</street>
+        <city>Cambridge</city>
+        <state>MA</state>
+        <zip>12345</zip>
+    </shipTo>
+    <billTo country="US">
+        <name>Robert Smith</name>
+        <street>8 Oak Avenue</street>
+        <city>Cambridge</city>
+        <state>MA</state>
+        <zip>12345</zip>
+    </billTo>
+    <items>
+    	<item partNum="242-NO" >
+	    	<productName>Nosferatu - Special Edition (1929)</productName>
+	    	<quantity>5</quantity>
+	    	<USPrice>19.99</USPrice>
+	    </item>
+    	<item partNum="242-MU" >
+	    	<productName>The Mummy (1959)</productName>
+	    	<quantity>3</quantity>
+	    	<USPrice>19.98</USPrice>
+	    </item>
+    	<item partNum="242-GZ" >
+	    	<productName>Godzilla and Mothra: Battle for Earth/Godzilla vs. King Ghidora</productName>
+	    	<quantity>3</quantity>
+	    	<USPrice>27.95</USPrice>
+	    </item>
+	</items>
+</purchaseOrder>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+
+<project name="hello-singleton-ejb" default="all" basedir=".">
+
+    <property name="is.ejb-jar.module" value="true"/>
+    <property name="javadoc.packagenames" value="enterprise.hello_singleton_ejb"/>
+
+    <import file="../../../bp-project/main.xml"/>
+    <property file="${user.home}/build.properties"/>
+
+    <!-- to get the test client to run when the user runs the project from inside NB -->
+    <target name="post-run-deploy">
+        <subant target="run">
+            <fileset dir="hello-singleton-client" includes="build.xml"/>
+        </subant>
+    </target>
+
+    <!-- to get the test client to run when the user runs the project from ant -->
+    <target name="launch">
+        <subant target="run">
+            <fileset dir="hello-singleton-client" includes="build.xml"/>
+        </subant>
+    </target>
+
+    <target name="all" depends="run"/>
+
+    <!-- clean up subproject and undeploy from ant -->
+    <target name="-pre-clean" depends="ant-undeploy">
+        <subant target="clean">
+            <fileset dir="hello-singleton-client" includes="build.xml"/>
+        </subant>
+    </target>
+
+    <!-- clean up subproject from NB (undeploy is handled automatically) -->
+    <target name="-post-clean">
+        <subant target="clean">
+            <fileset dir="hello-singleton-client" includes="build.xml"/>
+        </subant>
+    </target>
+
+    <target name="ant-undeploy" unless="netbeans.home">
+        <antcall target="undeploy"/>
+    </target>
+
+</project>

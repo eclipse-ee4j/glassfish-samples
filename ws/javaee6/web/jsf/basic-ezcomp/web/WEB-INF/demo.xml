@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<demo-info>
+
+    <demo>
+        <name>Simple Out</name>
+        <page>out.jsf</page>
+        <sources>
+            <source>
+                <label>Using Page</label>
+                <path>/out.xhtml</path>
+            </source>
+            <source>
+                <label>Composite Component</label>
+                <path>/resources/simpleout/out.xhtml</path>
+            </source>
+        </sources>
+    </demo>
+
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>Simple In/Out</name>
+        <page>inout.jsf</page>
+        <sources>
+            <source>
+                <label>Using Page</label>
+                <path>/inout.xhtml</path>
+            </source>
+            <source>
+                <label>Composite Component</label>
+                <path>/resources/simpleinout/inout.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+                <path>/sources/InOutBean.java.source</path>
+            </source>
+        </sources>
+    </demo>
+
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>Simple Contract Usage</name>
+        <page>contract.jsf</page>
+        <sources>
+            <source>
+                <label>Using Page</label>
+                <path>/contract.xhtml</path>
+            </source>
+            <source>
+                <label>Composite Component</label>
+                <path>/resources/simplecontract/double.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+                <path>/sources/MultiNumberHolder.java.source</path>
+            </source>
+        </sources>
+    </demo>
+
+        <!-- =================================================================== -->
+
+    <demo>
+        <name>Spinner Component</name>
+        <page>spinner.jsf</page>
+        <sources>
+            <source>
+                <label>Using Page</label>
+                <path>/spinner.xhtml</path>
+            </source>
+            <source>
+                <label>Composite Component</label>
+                <path>/resources/spinner/spinner.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+                <path>/sources/NumberHolder.java.source</path>
+            </source>
+        </sources>
+    </demo>
+    <!-- =================================================================== -->
+
+<demo>
+    <name>Styled Spinner Component</name>
+    <page>spinnerStyled.jsf</page>
+    <sources>
+        <source>
+            <label>Using Page</label>
+            <path>/spinnerStyled.xhtml</path>
+        </source>
+        <source>
+            <label>Composite Component</label>
+            <path>/resources/spinnerStyled/spinner.xhtml</path>
+        </source>
+        <source>
+            <label>Composite Component CSS</label>
+            <path>/resources/spinnerStyled/spinner.css</path>
+        </source>
+        <source>
+            <label>Managed Bean</label>
+            <path>/sources/NumberHolder.java.source</path>
+        </source>
+    </sources>
+</demo>
+
+    <!-- =================================================================== -->
+
+<demo>
+    <name>Final Spinner Component</name>
+    <page>spinnerFinal.jsf</page>
+    <sources>
+        <source>
+            <label>Using Page</label>
+            <path>/spinnerFinal.xhtml</path>
+        </source>
+        <source>
+            <label>Composite Component</label>
+            <path>/resources/spinnerFinal/spinner.xhtml</path>
+        </source>
+        <source>
+            <label>Composite Component CSS</label>
+            <path>/resources/spinnerFinal/spinner.css</path>
+        </source>
+        <source>
+            <label>Composite Component JS</label>
+            <path>/resources/spinnerFinal/spinner.js</path>
+        </source>
+        <source>
+            <label>Managed Bean</label>
+            <path>/sources/NumberHolder.java.source</path>
+        </source>
+    </sources>
+</demo>
+
+    <!-- =================================================================== -->
+
+<demo>
+    <name>Navigation Component</name>
+    <page>nav1.jsf</page>
+    <sources>
+        <source>
+            <label>Initial Using Page</label>
+            <path>/nav1.xhtml</path>
+        </source>
+        <source>
+            <label>Second Using Page</label>
+            <path>/nav2.xhtml</path>
+        </source>
+        <source>
+            <label>Composite Component</label>
+            <path>/resources/navbutton/nav.xhtml</path>
+        </source>
+        <source>
+            <label>Navigation Handler</label>
+            <path>/sources/NavigationHandler.java.source</path>
+        </source>
+    </sources>
+</demo>
+
+    <!-- =================================================================== -->
+
+<demo>
+    <name>Action Listener</name>
+    <page>actionListener.jsf</page>
+    <sources>
+        <source>
+            <label>Initial Using Page</label>
+            <path>/actionListener.xhtml</path>
+        </source>
+        <source>
+            <label>Composite Component</label>
+            <path>/resources/action/actionButton.xhtml</path>
+        </source>
+        <source>
+            <label>Action Listener</label>
+            <path>/sources/ActionCaller.java.source</path>
+        </source>
+    </sources>
+</demo>
+
+</demo-info>

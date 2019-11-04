@@ -1,0 +1,214 @@
+﻿<!--
+	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<html xmlns:w="" xmlns="http://www.w3.org/TR/REC-html40"><head>
+<meta name="Title" content="Sample Application Development">
+<meta name="Keywords" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-16"> 
+</head>
+
+<body style="tab-interval:
+.5in" alink="#333366" bgcolor="white" lang="EN-US" link="#594FBF" marginwidth="10" vlink="#1005FB">
+
+<table class="MsoNormalTable" style="width:100.0%;mso-cellspacing:4.0pt;mso-yfti-tbllook:1184;mso-padding-alt:
+ 2.0pt 2.0pt 2.0pt 2.0pt" border="0" cellpadding="0" cellspacing="4" width="100%">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes">
+  <td style="background:#587993;padding:2.0pt 2.0pt 2.0pt 2.0pt" valign="top">
+  <p class="MsoNormal" style="text-align:right" align="right"><b><span style="font-family:Geneva;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:&quot;Times New Roman&quot;;color:white">Java EE 7 <span class="GramE">SDK<span style="color:windowtext;font-weight:normal">&nbsp; </span></span></span></b><span style="font-family:Geneva;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
+
+<h1><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black;mso-ansi-language:EN" lang="EN"><!---- Don't modify anything above this line, except for the title tag -------->Sample
+Applications Development Process<o:p></o:p></span></h1>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt"><span style="font-size:
+12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black;mso-ansi-language:EN" lang="EN">The process for checking
+out workspace, developing, testing, documenting, and checking in the sample
+application into glassfish-samples project is as follows: <o:p></o:p></span></p>
+
+<ol start="1" type="1">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">Get developer
+     access to <a href="https://glassfish-samples.java.net/"><span style="mso-ansi-font-size:12.0pt;mso-bidi-font-size:12.0pt;mso-ascii-font-family:
+     Arial;mso-hansi-font-family:Arial">glassfish-samples</span></a> project by
+     sending email to <a href="mailto:dev@glassfish-samples.java.net"><span style="mso-ansi-font-size:12.0pt;mso-bidi-font-size:12.0pt;mso-ascii-font-family:
+     Arial;mso-hansi-font-family:Arial">dev@glassfish-samples.java.net</span></a>
+     with your GlassFish user id. Once you are granted the developer access, you
+     will be able to check out from and check in to the samples workspace.<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">Check out the
+     glassfish-samples project of java.net with a Subversion client using the
+     following command. Note: replace the last username with your own username.<br>
+     </span><code><span style="font-size:12.0pt;font-family:Arial;
+     mso-bidi-font-family:Courier;mso-ansi-language:EN" lang="EN">svn checkout https://glassfish-samples.java.net/svn/glassfish-samples/trunk
+     glassfish-samples --username username</span></code><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN"><o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">There are
+     separate directories for each version of Java EE. The samples for Java EE 7
+     are under the </span><code><span style="font-size:12.0pt;
+     font-family:Arial;mso-bidi-font-family:Courier;mso-ansi-language:EN" lang="EN">ws/javaee7</span></code><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+     EN" lang="EN"> directory and the samples for previous Java EE versions are under
+     similarly named<span style="mso-spacerun:yes">&nbsp; </span>directories.<o:p></o:p></span></li>
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-ansi-language:EN" lang="EN">Each
+     Java EE 7 samples </span><span style="font-size:12.0pt;font-family:Arial;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">is
+     to be a maven module (or set of maven modules) that can be built with a
+     simple "<span class="SpellE">mvn</span>" command with the standard
+     goals. Since IDEs support opening and running maven modules, IDE support
+     is provided through the use of maven modules.&nbsp;<o:p></o:p></span></li>
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;
+     font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:
+     minor-bidi">While the tutorial uses "use case study" type
+     examples that mimic a real world usage (such as "Duke's
+     Bookstore"), the samples should be more technology focused. The
+     sample does not need to justify the use of a feature through some real
+     world use case. The samples should be named after the technology that they
+     demonstrate. If there are code fragments in the specification showing how
+     a particular new feature is to be used, then that is a good source for a
+     sample. Expand the code fragment to make it <span class="SpellE">compilable</span>
+     and runnable, thereby including all of the details that were left out of
+     the specification for clarity.<br>
+     If the specification has a "What's new for Java EE 7" section,
+     with a bullet list of new features, then that bullet list is a good source
+     for creating samples.&nbsp; Create one sample for each bullet item in the
+     list. However, the samples should demonstrate something that is
+     non-obvious; if a new feature is completely obvious from the description
+     in the specification, <span class="GramE">then</span> a sample is not
+     needed.&nbsp; This part of the sample design is really a judgment
+     call.&nbsp;<o:p></o:p></span></li>
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;
+     font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:
+     minor-bidi">The Java EE 7 samples should:<o:p></o:p></span></li>
+ <ul type="circle">
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l4 level2 lfo1;tab-stops:list 1.0in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+      mso-bidi-theme-font:minor-bidi">Use only Java EE standard APIs. 3rd party
+      frameworks or implementation-specific features must <b>not</b> be used.<o:p></o:p></span></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l4 level2 lfo1;tab-stops:list 1.0in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+      mso-bidi-theme-font:minor-bidi">Use good programming practices:&nbsp; <o:p></o:p></span></li>
+  <ol start="1" type="1">
+   <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+       auto;mso-list:l4 level3 lfo1;tab-stops:list 1.5in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+       mso-bidi-theme-font:minor-bidi">Add comments to explain your code.&nbsp;<o:p></o:p></span></li>
+   <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+       auto;mso-list:l4 level3 lfo1;tab-stops:list 1.5in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+       mso-bidi-theme-font:minor-bidi">Format your code correctly.&nbsp;<o:p></o:p></span></li>
+   <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+       auto;mso-list:l4 level3 lfo1;tab-stops:list 1.5in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+       mso-bidi-theme-font:minor-bidi">Use descriptive names for classes, fields,
+       and methods.<o:p></o:p></span></li>
+   <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+       auto;mso-list:l4 level3 lfo1;tab-stops:list 1.5in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+       mso-bidi-theme-font:minor-bidi">Make sure IDEs such as Eclipse and <span class="SpellE">NetBeans</span> don't show errors when opening up the
+       project (editor should be "green" in <span class="SpellE">NetBeans</span>)<o:p></o:p></span></li>
+  </ol>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l4 level2 lfo1;tab-stops:list 1.0in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+      mso-bidi-theme-font:minor-bidi">Show discreet major features. It's better
+      to have three samples, each showing a single major feature, than a single
+      sample that shows three major features.<o:p></o:p></span></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l4 level2 lfo1;tab-stops:list 1.0in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+      mso-bidi-theme-font:minor-bidi">Make the sample as simple as possible.
+      Samples aren't <span class="GramE">case-studies</span>, and don't need to
+      mimic real-world examples.<o:p></o:p></span></li>
+  <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l4 level2 lfo1;tab-stops:list 1.0in"><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;
+      mso-bidi-theme-font:minor-bidi">Show off the Java EE 7 platform. Avoid
+      using outdated technologies (like JSP). Don't configure the sample in
+      deployment descriptors if annotations can be used instead. If a Java EE 7
+      API can be used to ease development, use it! For example, use session
+      beans to provide the business logic in a sample, use CDI beans instead of
+      JSF managed beans in web applications, and use Bean Validation
+      constraints when validating input.<o:p></o:p></span></li>
+ </ul>
+ <li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;
+     font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:
+     minor-bidi">Samples should be similar to each other where possible. Before
+     writing a simple, familiarize yourself with the other Java EE 7 samples so
+     that your sample is similar to other samples.<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">It is
+     important that each sample application is provided with appropriate
+     documentation. <o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">Refer to the
+     existing representative sample </span><code><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:Courier;
+     mso-ansi-language:EN" lang="EN">message-board-war</span></code><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN"> under the </span><code><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:
+     Courier;mso-ansi-language:EN" lang="EN">javaee7/rest</span></code><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN"> directory to
+     understand the directory structure, build scripts, test code,
+     documentation.<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">For
+     guidelines on documenting the sample, refer to the representative sample </span><code><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:
+     Courier;mso-ansi-language:EN" lang="EN">hello-stateless-ejb</span></code><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+     EN" lang="EN">, which is documented using the sample_doc_template.html file. <o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">Each sample
+     application needs one or more test cases so that the sample applications
+     go through some regular testing like glassfish to notice any regressions
+     and for the purposes of promoting the samples bundle. Refer to the test
+     directory of representative sample </span><code><span style="font-size:12.0pt;font-family:Arial;mso-bidi-font-family:Courier;
+     mso-ansi-language:EN" lang="EN">hello-stateless-ejb</span></code><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN"> for
+     information.<br style="mso-special-character:line-break">
+     <!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+     <!--[endif]--><o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">For setup of
+     database and usage of JDBC resources, refer to TBD<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">Make sure
+     that the sample works with Netbeans IDE.<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;mso-list:l4 level1 lfo1;tab-stops:list .5in"><span style="font-size:12.0pt;font-family:Arial;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN">Once the
+     sample application development, testing and documentation is complete, get
+     it reviewed by a domain expert or a colleague before checking it in.</span><span style="font-family:Geneva;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN" lang="EN"><o:p></o:p></span></li>
+</ol>
+
+
+
+<p class="copy"><span style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;mso-ansi-language:EN" lang="EN"><!-- start copyright -->Copyright © 1997-2013
+Oracle and/or its affiliates. All rights reserved. <o:p></o:p></span></p>
+<!--  end copyright  -->
+</body></html>

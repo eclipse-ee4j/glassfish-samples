@@ -1,0 +1,44 @@
+<!--
+	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Ajax</title>
+</h:head>
+<h:body>
+    <h:form id="form1">    <!-- Note that unlike previous examples, prependid='true' -->
+        Output: <h:outputText id="out1" value="#{echo.str}"/>
+        <br/>
+        Input: <h:inputText id="in1" autocomplete="off" value="#{echo.str}">
+            <f:ajax render="out1"/>
+        </h:inputText>
+        <br/>
+        <!-- A no-op button, just to lose the focus from "in1" -->
+        <h:commandButton id="button1" value="Echo" type="button"/>
+        <br/>
+        <!-- Resets the string, refreshes the form, but not the page -->
+        <h:commandButton id="reset" value="reset" actionListener="#{echo.reset}">
+            <f:ajax render="@form" />
+        </h:commandButton>
+        <!-- Reloads the page, doesn't reset the string -->
+        <h:commandButton id="reload" value="reload"/>
+        <h:messages/>
+    </h:form>
+</h:body>
+</html>

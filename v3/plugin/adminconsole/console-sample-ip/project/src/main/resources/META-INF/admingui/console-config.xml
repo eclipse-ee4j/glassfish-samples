@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<!--
+
+     This is console config file that adds integration point to the Admin console. The goal is to keep this
+     file up-to-date and add test to it as we allows more integration point to the console.
+     A list of valid point and more information can be found in
+     
+     http://wiki.glassfish.java.net/Wiki.jsp?page=V3IntegrationPoint
+     
+ -->    
+
+<console-config id="sample">
+    
+     <!-- ================================================================= -->        
+        <!-- Tree Node plugin testing   type= org.glassfish.admingui:navNode  -->
+        <!-- To add a tree node to the left navigation tree.
+             Top Level tree node:       id = tree
+             under Registration:        id = registration
+             under Application Server:  id = applicationServer
+             Under Applications :       id = applications
+             under Resources:           id = resources
+             under Configuration:       id = configuration
+         -->
+        <integration-point 
+                id="sampleNode" 
+                type="org.glassfish.admingui:navNode" 
+                priority="200" 
+                parentId="tree" 
+                content="sampleNode.jsf" 
+        />
+        
+        <!-- the following 2 IntegrationPoint (IP) has the same parent, change the priority to see that priority affects the order
+             the tree nodes shows up under the same parent node.
+         -->
+        <integration-point 
+                id="sampleResource" 
+                type="org.glassfish.admingui:navNode" 
+                priority="400" 
+                parentId="resources" 
+                content="sampleResourceNode.jsf" 
+        />
+        <integration-point 
+                id="sampleResource-2" 
+                type="org.glassfish.admingui:navNode" 
+                priority="200" 
+                parentId="resources" 
+                content="sampleAnotherNode.jsf" 
+        />
+        
+        <!-- add one more tree node under Applications -->
+        <integration-point 
+                id="ejbNode" 
+                type="org.glassfish.admingui:navNode" 
+                priority="100" 
+                parentId="applications" 
+                content="sampleEarNode.jsf" 
+        />
+        
+        <!-- add one more tree node under Configuration -->
+        <integration-point 
+                id="ejbNode" 
+                type="org.glassfish.admingui:navNode" 
+                priority="100" 
+                parentId="configuration" 
+                content="sampleConfigNode.jsf" 
+        />
+       
+<!-- ================================================================= -->        
+        <!-- common Task plugin testing  type=org.glassfish.admingui:commonTask  -->
+        
+        <!-- To add a common task under the existing group.  The 2 group you can add plugin points is:
+             Deployment:   id = deployment
+             Monitoring:   id = monitoring
+         -->
+           
+        <integration-point 
+                id="sampleCommonTask" 
+                type="org.glassfish.admingui:commonTask" 
+                priority="200"
+                parentId="deployment"
+                content="sampleCommonTask.jsf"
+        />
+        
+        <!-- Common Task Section testing -->
+        <!-- To add a group in the common task page.  
+            id = commonTasksSection 
+        -->
+        
+       <integration-point 
+            id="sampleGroup" 
+            type="org.glassfish.admingui:commonTask" 
+            priority="500"
+            parentId="commonTasksSection"
+            content="sampleTaskGroup.jsf"
+        /> 
+        
+<!-- ================================================================= -->
+        <!-- Tab Integration Point testing type=org.glassfish.admingui:serverInstTab -->
+        <!-- To add a tab to an existing tab set 
+             Add to the first level tab in the server instance page 
+             id = serverInstTabs
+        -->
+
+        <!-- test that changing priority switch the order of the tab -->
+        <integration-point 
+            id="sampleTab"
+            parentId="serverInstTabs"
+            type="org.glassfish.admingui:serverInstTab" 
+            priority="500" 
+            content="sampleTab.jsf"
+        />
+        
+        <integration-point 
+            id="sampleTabWithSubTab"
+            parentId="serverInstTabs"
+            type="org.glassfish.admingui:serverInstTab" 
+            priority="300" 
+            content="sampleTabWithSubTab.jsf"
+        />
+        
+        <!-- test sub tab -->
+        <integration-point 
+            id="sampleSubTab1" 
+            type="org.glassfish.admingui:serverInstTab" 
+            priority="300" 
+            parentId="sampleTabWithSubTab"
+            content="sampleSubTab1.jsf"
+        />
+        <integration-point 
+            id="sampleSubTab2" 
+            type="org.glassfish.admingui:serverInstTab" 
+            priority="400" 
+            parentId="sampleTabWithSubTab"
+            content="sampleSubTab2.jsf"
+        />
+        
+        
+<!-- ================================================================= -->
+        <!-- Page Integration Point testing type=org.glassfish.admingui:resources -->
+        <!-- To add a component to the Resource page 
+             As part of the property sheet
+             id=propSheetSection
+        -->
+        
+        <integration-point 
+                id="sampleResourceLink"
+                parentId="propSheetSection"
+                type="org.glassfish.admingui:resources" 
+                priority="100" 
+                content="sampleResourceLink.jsf"
+        />
+        
+        
+<!-- ================================================================= -->
+        <!-- Page Integration Point testing type=org.glassfish.admingui:configuration -->
+        <!-- To add a component to the Resource page 
+             As part of the property sheet
+             id=propSheetSection
+        -->
+        
+        <!-- again, try changing the priority to see how it affects the position of this link to those in the page -->
+        <integration-point 
+                id="sampleConfigurationLink" 
+                type="org.glassfish.admingui:configuration" 
+                priority="100"
+                parentId="propSheetSection"
+                content="sampleConfigLink.jsf"
+        />
+</console-config>

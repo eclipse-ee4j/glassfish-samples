@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<demo-info>
+
+    <demo>
+        <name>Simple JSF Ajax Count Page</name>
+        <page>count.jsf</page>
+        <sources>
+            <source>
+                <label>JSF Page</label>
+                <path>/count.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+		<path>/sources/Count.java.source</path>
+            </source>
+        </sources>
+    </demo>
+
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>Show and Hide Demo</name>
+        <page>hidenshow.jsf</page>
+        <sources>
+            <source>
+                <label>JSF Page</label>
+                <path>/hidenshow.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+		<path>/sources/HideNShow.java.source</path>
+            </source>
+        </sources>
+    </demo>
+
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>First Echo Demo</name>
+        <page>echo1.jsf</page>
+        <sources>
+            <source>
+                <label>JSF Page</label>
+                <path>/echo1.xhtml</path>
+            </source>
+            <source>
+                <label>Backing Javascript</label>
+                <path>/resources/javascript/echo1.js</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+		<path>/sources/Echo.java.source</path>
+            </source>
+        </sources>
+    </demo>
+
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>Second Echo Demo</name>
+        <page>echo2.jsf</page>
+        <sources>
+            <source>
+                <label>JSF Page</label>
+                <path>/echo2.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+		<path>/sources/Echo.java.source</path>
+            </source>
+        </sources>
+    </demo>
+
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>Redirect Demo</name>
+        <page>redirect.jsf</page>
+        <sources>
+            <source>
+                <label>JSF Page</label>
+                <path>/redirect.xhtml</path>
+            </source>
+            <source>
+                <label>Target Page (1 of 3)</label>
+                <path>/redirecttarget1.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+		<path>/sources/RedirectBean.java.source</path>
+            </source>
+        </sources>
+    </demo>
+
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>Listener Demo</name>
+        <page>listener.jsf</page>
+        <sources>
+            <source>
+                <label>JSF Page</label>
+                <path>/listener.xhtml</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+		<path>/sources/ListenerBean.java.source</path>
+            </source>
+        </sources>
+    </demo>
+    <!-- =================================================================== -->
+
+    <demo>
+        <name>Aggregation Demo</name>
+        <page>aggregate.jsf</page>
+        <sources>
+            <source>
+                <label>JSF Page</label>
+                <path>/aggregate.xhtml</path>
+            </source>
+            <source>
+                <label>Backing Javascript</label>
+                <path>/resources/javascript/aggregate.js</path>
+            </source>
+            <source>
+                <label>Managed Bean</label>
+		<path>/sources/Echo.java.source</path>
+            </source>
+        </sources>
+    </demo>
+</demo-info>

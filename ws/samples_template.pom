@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.glassfish.samples</groupId>
+    <artifactId>@ARTIFACT_ID@</artifactId>
+    <version>@VERSION@</version>
+    <packaging>zip</packaging>                                                                                
+    <name>Java EE Samples @SAMPLE_NAME@</name>
+    <description>GlassFish Java EE Samples @SAMPLE_NAME@</description>    
+
+    <developers>                                                                                              
+        <developer>                                                                                           
+            <id>scatari</id>
+            <name>Sathyan Catari</name>
+            <url>http://blogs.oracle.com/sathyan</url>
+            <organization>Oracle Corporation</organization>                                                   
+            <roles>                                                                                           
+                <role>lead</role>                                                                             
+            </roles>                                                                                          
+        </developer>                                                                                          
+    </developers>                                                                                             
+
+    <url>http://glassfish-samples.java.net</url>
+    <organization>
+        <name>GlassFish Community</name>
+        <url>http://glassfish.org</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>CDDL + GPLv2 with classpath exception</name>
+            <url>https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <issueManagement>
+        <system>jira</system>
+        <url>http://java.net/jira/browse/GLASSFISH_SAMPLES</url>
+    </issueManagement>
+    <mailingLists>
+        <mailingList>
+            <name>GlassFish Samples Developer</name>
+          <archive>dev@glassfish-samples.java.net</archive>
+        </mailingList>
+    </mailingLists>
+    <scm>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish-samples~svn/trunk</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish-samples~svn/trunk</developerConnection>
+        <url>http://java.net/projects/glassfish-samples/sources/svn/show</url>
+    </scm>
+
+</project>

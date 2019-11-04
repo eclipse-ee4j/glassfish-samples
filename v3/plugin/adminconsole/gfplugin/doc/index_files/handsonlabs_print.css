@@ -1,0 +1,42 @@
+/*
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+*/
+/* 
+    Created on : Mar 20, 2008, 4:07:39 PM
+    Description:
+        Stylesheet containing JavaOne Hands-on Labs style classes for printing.
+*/
+
+/* Override default settings that aren't printer-friendly */
+.d7 div.cornerBL {background: white;}
+a:link, a.named:visited, div#breadcrumb a:visited, div.breadcrumb, div.breadcrumb a:visited, div.sitelinks a:visited, a code, .e2 table.navblue a:visited, .e5 a:visited, .e8v0 a:visited, .e9v0 a:visited {color: black; text-decoration: underline}
+div.codebox pre {border: solid 2px black; background-color: white; white-space: pre;}
+div.console pre {border: double 4px black; background-color: white; color: black; white-space: pre;}
+.j1holtip {border: groove 3px black; background-color: white;}
+.j1coverpage {height: 100%; width: 100%; vertical-align: center; text-align: center;}
+.j1coverpage div.pagetitle h1{color: black; font-weight: normal; font-size:48px;}
+.j1coverpage div.pagetitle h2{text-decoration: none; font-weight: normal; font-size:36px;}
+.j1coverpage div.pagetitle h3{text-decoration: none; font-weight: normal; font-size:28px;}
+
+@media all {
+    .j1holnoprint {display: block;}
+    .j1holprint, .j1holpagebreak {display: none;}
+}
+@media print {
+    .j1holnoprint {display: none;}
+    .j1holprint, .j1holpagebreak {display: block;}
+    .j1holpagebreak {page-break-after: always;}
+    div.j1holcontents {page-break-after: always}
+}

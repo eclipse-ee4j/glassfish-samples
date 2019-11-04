@@ -1,0 +1,84 @@
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<sun:page>
+<sun:html>
+    <sun:head title="chart">
+    </sun:head>
+    <sun:body>
+        <sun:form id="form">
+
+<!-- Pie Chart -->
+<sun:markup tag="div" style="width:380px; height: 310px;">
+<jmaki:widget name="jmaki.charting.plotkit.pie"
+    args="{colorScheme:4}"
+    value="{
+    xAxis : {
+        title : 'Months',
+        labels : [
+        {label : 'January'},
+        {label : 'February'},
+        {label : 'March'},
+        {label : 'April'},
+        {label : 'May'},
+        {label : 'June'},
+        {label : 'July'},
+        {label : 'August'},
+        {label : 'September'},
+        {label : 'October'},
+        {label : 'November'},
+        {label : 'December'} ] },
+    data : [ {
+        label : 'Set 1',
+        values : [25, 45, 25, 45, 50, 25, 35, 25, 25, 20, 35, 45]
+        } ] }" />
+</sun:markup>
+
+<!-- Area Chart -->
+<sun:markup tag="div" style="width: 500px; height: 280px;">
+<jmaki:widget name="jmaki.charting.dojo.area"
+    value="{
+        xAxis : {
+            title : 'Months',
+            labels : [{ label : 'January'},
+                { label : 'February'},
+                { label : 'March'},
+                { label : 'April'},
+                { label : 'May'},
+                { label : 'June'},
+                { label : 'July'},
+                { label : 'August'},
+                { label : 'September'},
+                { label : 'October'},
+                { label : 'November'},
+                { label : 'December'} ] },
+        yAxis : {
+            title : 'Temperature',
+            labels : [{ label : '0', value : 0},
+                { label : '10s', value : 10},
+                { label : '20s', value : 20},
+                { label : '30s', value : 30},
+                { label : '40s', value : 40},
+                { label : '50s', value : 50} ] },
+        data : [{label : 'Gray Series', values : [65, 45, 15, 45, 50, 25, 3, 25, 35, 27, 35, 39] },
+                {label : 'Pink Series', values : [25, 45, 50, 5, 45, 35, 25, 35, 25, 29, 27, 25] },
+                {label : 'Blue Series', values : [45, 50, 25, 35, 2, 45, 45, 55, 45, 47, 31, 41] },
+                {label : 'Red Series',  values : [20, 12, 4, 7, 5, 19, 35, 11, 20, 30, 15, 7] } ] }"/>
+</sun:markup>
+
+        </sun:form>
+    </sun:body>
+</sun:html>
+</sun:page>

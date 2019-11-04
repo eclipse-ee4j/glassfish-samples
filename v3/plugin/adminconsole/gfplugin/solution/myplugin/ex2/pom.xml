@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+--> 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.example</groupId>
+    <artifactId>console-myplugin</artifactId>
+    <packaging>hk2-jar</packaging>
+    <version>1.0</version>
+    <name>JavaOne2008 Admin Console Plugin</name>
+    <organization>
+	<name>Sun Microsystems, Inc.</name>
+	<url>http://www.sun.com</url>
+    </organization>    
+    <mailingLists>
+	<mailingList>
+	    <name>admin</name>
+	    <subscribe>https://glassfish.dev.java.net/servlets/ProjectMailingListList</subscribe>
+	    <post>admin@glassfish.dev.java.net</post>
+	    <archive>https://glassfish.dev.java.net/servlets/SummarizeList?listName=admin</archive>
+	</mailingList>
+    </mailingLists>
+    <properties>
+	<mvn-repo>file://${basedir}/../../../maven2/repository</mvn-repo>
+    </properties>
+    <build>
+	<defaultGoal>install</defaultGoal>
+	<sourceDirectory>src/main/java</sourceDirectory>      
+	<plugins>
+	    <plugin>
+		<groupId>com.sun.enterprise</groupId>
+		<artifactId>hk2-maven-plugin</artifactId>
+		<version>0.2.1</version>
+		<extensions>true</extensions>
+		<configuration>
+		    <processors>
+			<processor>
+			    <groupId>com.sun.jsftemplating</groupId>
+			    <artifactId>jsftemplating-dt</artifactId>
+            	<version>1.2-GFv3-tp2</version>
+			</processor>
+		    </processors>
+		</configuration>
+	    </plugin>
+	    <plugin>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<configuration>
+		    <source>1.5</source>
+		    <target>1.5</target>
+		</configuration>
+	    </plugin>
+	</plugins>
+    </build>
+
+
+    <repositories>
+    <repository>
+        <id>gfv3</id>
+	<url>${mvn-repo}</url>
+        <!-- <url>http://download.java.net/maven/glassfish/</url> -->
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>java.net2</id>
+	<url>${mvn-repo}</url>
+        <!-- <url>https://maven2-repository.dev.java.net/nonav/repository</url> -->
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>java-dev-repository</id>
+        <name>Maven 1.x java.dev Snapshot Repository</name>
+        <layout>legacy</layout>
+	<url>${mvn-repo}</url>
+        <!-- <url>https://maven-repository.dev.java.net/nonav/repository</url> -->
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+    <repository>
+	<id>java.net</id>
+	<url>${mvn-repo}</url>
+	<!-- <url>http://download.java.net/maven/1</url> -->
+	<layout>legacy</layout>
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+
+    <repository>
+	<id>maven2-repository.dev.java.net</id>
+	<name>Java.net Repository for Maven</name>
+	<url>${mvn-repo}</url>
+	<!-- <url>http://download.java.net/maven/2/</url> -->
+	<layout>default</layout>
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+
+    <repository>
+	<id>java.net</id>
+	<url>${mvn-repo}</url>
+	<!-- <url>http://download.java.net/maven/1</url> -->
+	<layout>legacy</layout>
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+
+    <repository>
+	<id>central</id>
+	<url>${mvn-repo}</url>
+	<!-- <url>http://repo1.maven.org/maven2/</url> -->
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+
+    <repository>
+	<id>maven-repository.dev.java.net</id>
+	<url>${mvn-repo}</url>
+	<!-- <url>http://download.java.net/maven/1/</url> -->
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </repository>
+
+
+
+    </repositories>
+
+    <pluginRepositories>
+    <pluginRepository>
+        <id>glassfish-repository</id>
+        <name>Glassfish repository</name>
+	<url>${mvn-repo}</url>
+        <!-- <url>http://download.java.net/maven/glassfish/</url> -->
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+    </pluginRepository>
+
+    </pluginRepositories>
+
+    <dependencies>
+	<dependency>
+	    <groupId>org.glassfish.common</groupId>
+	    <artifactId>glassfish-api</artifactId>
+ 		<version>10.0-tp-2-SNAPSHOT</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>com.sun.jsftemplating</groupId>
+	    <artifactId>jsftemplating-dt</artifactId>
+        <version>1.2-GFv3-tp2</version>
+	    <scope>provided</scope>
+	</dependency>
+    </dependencies>
+</project>

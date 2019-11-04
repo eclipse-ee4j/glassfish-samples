@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<project name="simple-ws-war" default="all" basedir=".">
+
+    <property name="is.war.module" value="true" />
+    <property name="run.uri" value="simple-ws-war/HelloService?Tester"/>
+
+    <import file="../../../bp-project/jaxws.xml" />
+
+    <target name="setup">
+        <mkdir dir="web"/>
+    </target>
+
+    <target name="jaxws">
+	<!-- apt -->
+	<apt fork="true" debug="true" verbose="${verbose}" destdir="${build.classes.dir}" sourcedestdir="${build.classes.dir}"
+		sourcepath="${src.dir}">
+		<classpath>
+			<path refid="classpath"/>
+			<pathelement location="${src.dir}"/>
+		</classpath>
+		<option key="r" value="${build.dir}"/>
+		<source dir="${src.dir}">
+			<include name="**/*.java"/>
+		</source>
+	</apt>
+    </target>
+
+    <target name="all" depends="setup,jaxws" unless="netbeans.home">
+        <antcall target="run" />
+    </target>
+
+</project>

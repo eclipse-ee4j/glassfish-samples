@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+
+<project name="programmatic-login" default="all" basedir=".">
+
+    <property name="javadoc.packagenames" value="enterprise.programmatic_login"/>
+    <property name="is.war.module" value="true" />
+
+    <import file="../build.xml"/>
+
+    <target name="all" depends="default,ant-deploy">
+        <antcall target="create-file-user"/>
+        <antcall target="run-bp"/>
+    </target>
+
+    <target name="ant-deploy" unless="hetbeans.home">
+        <antcall target="deploy"/>
+    </target>
+
+    <target name="-pre-clean" depends="ant-undeploy">
+        <antcall target="delete-file-user"/>
+        <delete file="${javaee.server.passwordfile.foo}" failonerror="false"/>
+    </target>
+    <target name="-post-clean">
+        <antcall target="delete-file-user"/>
+        <delete file="${javaee.server.passwordfile.foo}" failonerror="false"/>
+    </target>
+    <target name="ant-undeploy" unless="netbeans.home">
+        <antcall target="undeploy"/>
+    </target>
+    <!--
+    <target name="run">
+        <antcall target="run-bp"/>
+    </target>
+-->
+    <target name="run-bp" unless="netbeans.home">
+        <sleep seconds="5"/>
+        <antcall target="launch"/>
+    </target>
+
+    <target name="run-java-client">
+        <subant target="run">
+            <fileset dir="http-method-omission-client" includes="build.xml"/>
+        </subant>
+    </target>
+
+    <target name="-post-run-deploy">
+        <antcall target="create-file-user"/>
+        <delete file="${javaee.server.passwordfile.foo}" failonerror="false"/>
+    </target>
+
+</project>

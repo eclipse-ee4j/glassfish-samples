@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<!-- java-client-ant.xml: contains targets for projects that produce 
+     java client module. This file is not meant to be included 
+     in a project directly.
+     This file should only be included if this project is defining 
+     is.java-client.module property.
+-->
+
+<project name="java-client-ant" default="dummy-default">
+
+  <property name="app.module" value="${build.dir}/${module.name}-java-client.jar"/>
+  <property name="java-client.build.dir" value="${build.dir}/java-client"/>
+
+  <target name="-pre-clean">
+  </target>
+
+  <target name="package" depends="-post-compile"
+    description="packages the archive">
+    <mkdir dir="${java-client.build.dir}"/>
+
+    <!-- copy in the compiled classes -->
+    <copy todir="${java-client.build.dir}">
+      <fileset dir="${build.classes.dir}"/>
+    </copy>
+
+    <delete file="${app.module}"/>
+    <jar jarfile="${app.module}" basedir="${java-client.build.dir}"/>
+    <delete dir="${java-client.build.dir}"/>
+  </target>
+
+  <target name="runjavaclient"
+    description="run stand-alone java client">
+    <java  fork="on"
+        failonerror="true"
+        classname="${runjavaclient.class.name}">
+        <classpath refid="classpath"/>
+    </java>
+  </target>
+
+
+  <target name="dummy-default"/>
+
+</project>

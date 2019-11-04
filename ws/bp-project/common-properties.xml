@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<!-- common-properties.xml: Handling of various properties for the project. 
+     This file is not meant to be included directly. 
+     This file automatically sets the following properties: 
+       build.dir, build.classes.dir
+     To change the value of these properties for your project, you need to set them
+     BEFORE you include this file. You can do that by defining the property in 
+     <user.home>/bpcatalog.properties, build.properties, <root.dir>/build.properties
+     or in the build.xml file.
+-->
+<project name="common-properties" default="dummy-default">
+
+  <!-- include common properties -->
+  <property file="${ant.file.common-properties}/../common.properties"/>
+
+  <!-- include common properties -->
+  <property file="${ant.file.common-properties}/../build.properties"/>
+
+  <property file="build.properties"/>
+
+  <!-- include user specific build properties -->
+  <property file="${user.home}/build.properties"/>
+
+  <!-- include netbeans properties -->
+  <property file="nbproject/project.properties"/>
+  <property file="nbproject/private/private.properties"/>
+  <property file="${deploy.ant.properties.file}" />
+
+  <!-- try to configure javaee.home for clients that exercise a sample project -->
+  <loadfile srcFile="../nbproject/private/private.properties" property="javaee.home.foo" quiet="true">
+      <filterchain >
+          <linecontains >
+              <contains value="j2ee.server.instance=["/>
+          </linecontains>
+          <tokenfilter>
+              <replaceregex pattern="\].*[0-9]" replace=""/>
+          </tokenfilter>
+          <tokenfilter>
+              <replaceregex pattern="j2ee\.server\.instance=\[" replace=""/>
+          </tokenfilter>
+          <striplinebreaks/>
+      </filterchain>
+  </loadfile>
+
+  <condition property="javaee.home" value="${javaee.home.foo}">
+    <and>
+      <not><isset property="javaee.home"/></not>
+      <isset property="javaee.home.foo"/>
+    </and>
+  </condition>
+
+  <!-- Look for a suitable value for javaee.home if it is not already set -->
+  <condition property="javaee.home" value="${sjsas.root}">
+    <and>
+      <not><isset property="javaee.home"/></not>
+      <isset property="sjsas.root"/>
+    </and>
+  </condition>  
+  <condition property="javaee.home" value="${com.sun.aas.InstallRoot}">
+    <and>
+      <not><isset property="javaee.home"/></not>
+      <isset property="com.sun.aas.InstallRoot"/>
+    </and>
+  </condition>
+
+  <target name="dummy-default"/>
+</project>

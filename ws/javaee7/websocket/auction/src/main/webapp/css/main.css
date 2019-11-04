@@ -1,0 +1,90 @@
+/*
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+*/
+
+/*
+    Document   : main
+    Created on : Mar 18, 2013, 6:15:21 PM
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+
+#userID {
+    text-align: right;
+}
+
+#html5images {
+    text-align: center;
+}
+
+#html5images img {
+    width: 64px;
+    height: 64px;
+}
+
+h2 {
+    text-align: center;
+}
+
+table {
+    text-align: center;
+    padding: 5;
+    border-spacing: 10;
+    margin: auto;
+}
+
+
+.label {
+    vertical-align: top;
+    text-align: left;
+}
+
+.label p {
+    color: blue;
+}
+
+.value {
+    vertical-align: central;
+    background-color: #E8E8E8;
+    text-align: left;
+
+}
+
+#resultID, #newBid {
+    text-align: center;
+}
+
+#comboID {
+     width: 300px;
+}
+
+.innertable {
+    text-align: center;
+    padding: 5;
+    border-spacing: 10;
+}
+
+.centered {
+    text-align: center;
+}

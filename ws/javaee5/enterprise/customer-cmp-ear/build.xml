@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<project name="customer-cmp-ear" default="all" basedir=".">
+
+    <property name="is.ear.module" value="true" />
+
+    <path id="ear-components">
+        <filelist dir="./customer-cmp-ejb" files="build.xml" />
+        <filelist dir="./customer-cmp-war" files="build.xml" />
+        <filelist dir="./customer-cmp-appclient" files="build.xml" />
+    </path>
+
+    <property name="run.uri" value="customer-cmp-war/index.html"/>
+
+    <import file="../../../bp-project/main.xml" />
+
+    <target name="-pre-setup" unless="netbeans.home">
+	<subant target="create-db">
+		<fileset dir="setup" includes="build.xml"/>
+	</subant>
+    </target>
+
+    <target name="all" unless="netbeans.home">
+        <antcall target="setup"/>
+        <antcall target="ear"/>
+        <antcall target="deploy"/>
+        <antcall target="client-jar"/>
+        <antcall target="launch"/>
+    </target>
+
+    <target name="-post-unsetup" unless="netbeans.home">
+        <antcall target="unsetup"/>
+	<subant target="delete-db">
+		<fileset dir="setup" includes="build.xml"/>
+	</subant>
+    </target>
+
+    <target name="setup" unless="netbeans.home">
+	<subant target="setup">
+		<fileset dir="setup" includes="build.xml"/>
+	</subant>
+    </target>
+
+    <target name="unsetup" unless="netbeans.home">
+	<subant target="unsetup">
+		<fileset dir="setup" includes="build.xml"/>
+	</subant>
+    </target>
+
+    <target name="run">
+        <antcall target="run-bp"/>
+        <antcall target="run-nb"/>
+    </target>
+
+    <target name="run-bp" unless="netbeans.home">
+        <antcall target="launch"/>
+    </target>
+  
+    <target name="run-nb" if="netbeans.home">
+        <antcall target="init"/>
+        <antcall target="run-deploy"/>
+        <antcall target="run-display-browser"/>
+        <antcall target="run-ac"/>
+    </target>
+
+</project>
