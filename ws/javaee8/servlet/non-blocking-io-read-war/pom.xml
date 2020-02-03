@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+        Copyright (c) 2020 Payara Services Ltd.
 	
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,8 +33,9 @@
     
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakarta.ee.version}</version>
         </dependency>
     </dependencies>
 
@@ -41,18 +43,10 @@
         <finalName>non-blocking-io-read-war</finalName>
         <plugins>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-            </plugin>
-            <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.1</version>
             </plugin>
         </plugins>
     </build>

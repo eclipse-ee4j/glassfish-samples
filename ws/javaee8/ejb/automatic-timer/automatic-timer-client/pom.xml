@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+        Copyright (c) 2020 Payara Services Ltd.
 	
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,7 +19,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-	      <groupId>org.glassfish-samples</groupId>
+	<groupId>org.glassfish-samples</groupId>
         <artifactId>automatic-timer</artifactId>
         <version>5.0-SNAPSHOT</version>
     </parent>
@@ -27,8 +28,8 @@
     <name>The EJB 3.2 Automatic Timer Sample Client</name>
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
         </dependency>
         <!-- Running JNDI operations in a standalone EJB client requires GlassFish client jar -->
         <dependency>
@@ -41,7 +42,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
                 <configuration>
                     <mainClass>enterprise.automatic_timer_client.AutomaticTimerJavaClient</mainClass>
                 </configuration>

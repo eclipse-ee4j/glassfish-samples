@@ -1,5 +1,6 @@
 /*
  	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+        Copyright (c) 2020 Payara Services Ltd.
 	
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License v. 2.0, which is available at
@@ -43,7 +44,7 @@ import samples.connectors.mailconnector.ra.inbound.*;
         @AuthenticationMechanism(authMechanism = "BasicPassword", 
           credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential) 
   }
- * // Since the following attribute values denote the default values of the
+ /* // Since the following attribute values denote the default values of the
  * annotation, // they need not be specified explicitly
  * transactionSupport =
  * TransactionSupport.TransactionSupportLevel.NoTransaction,
