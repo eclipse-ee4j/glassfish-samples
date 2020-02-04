@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+        Copyright (c) 2020 Payara Services Ltd.
 	
 	This program and the accompanying materials are made available under the
 	terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,13 +28,13 @@
     <name>ejb32-war</name>
     <dependencies>
         <dependency>
-        	<groupId>javax</groupId>
-					<artifactId>javaee-api</artifactId>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
         </dependency>  
     </dependencies>
        
     <build>
-    		<finalName>ejb32-war</finalName>
+    	<finalName>ejb32-war</finalName>
         <plugins>
             <plugin>
             		<groupId>org.apache.maven.plugins</groupId>
