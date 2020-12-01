@@ -1,0 +1,79 @@
+<!--
+
+    Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Sample Application Development</title>
+<style type="text/css">
+  body,th,td,p,div,span,a,ul,ul li, ol, ol li, ol li b, dl,h1,h2,h3,h4,h5,h6,li
+  {font-family:geneva,helvetica,arial,"lucida sans",sans-serif; font-size:10pt}
+  h1 {font-size:18pt}
+  h2 {font-size:14pt}
+  h3 {font-size:12pt}
+  code,kbd,tt,pre {font-family:monaco,courier,"courier new";font-size:10pt;color:#666}
+  li {padding-bottom: 8px}
+  p.copy, p.copy a {font-family:geneva,helvetica,arial,"lucida sans",sans-serif; font-size:8pt}
+  p.copy {text-align: center}
+  </style>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"  alink="#333366" link="#594fbf" marginwidth="10" vlink="#1005fb">
+<!-- specifies whether it is web or classic -->
+<script type="text/javascript" language="JavaScript1.1" src="Components.js"></script>
+<table border="0" cellpadding="2" cellspacing="4" width="100%"><tbody>
+	<tr>
+		<td align="right" bgcolor="#587993" valign="top"><font  color="#ffffff" size="-1"><b>Jakarta EE 9 SDK</b></font>&nbsp;</td>
+	</tr>
+</tbody></table>
+<h1>  Sample Applications Development Process</span></h1>
+<p class="MsoNormal"><span style="font-size:
+
+12.0pt;font-family:Arial;Times New Roman&quot;;Times New Roman&quot;;color:black;" lang="EN">The process for developing sample applications for the glassfish-samples project are as follows: </span></p>
+<ol start="1" type="1">
+  <li>Read and follow the directions on the GlassFlash <a href="https://javaee.github.io/glassfish/CONTRIBUTING">Contribute</a> page.</li>
+  <li>Fork the <a href="https://github.com/javaee/glassfish-samples">glassfish-samples</a> project on GitHub.</span></li>
+  <li>There are separate directories for each version of Java EE. The samples for Java EE 9 are under the <span><code>ws/jakartaee9</code></span> directory and the samples for previous Java EE versions are under similarly named directories.</li>
+  <li>Each Java EE 9 sample is to be a maven module (or set of maven modules) that can be built with a simple <span><code>mvn</code></span> command with the standard goals. Since IDEs support opening and running maven modules, IDE support is provided through the use of maven modules.</li>
+  <li>While the tutorial uses "use case study" type examples that mimic a real world usage (such as "Duke's Bookstore"), the samples should be more technology focused. The sample does not need to justify the use of a feature through some real world use case. The samples should be named after the technology that they demonstrate. If there are code fragments in the specification showing how a particular new feature is to be used, then that is a good source for a sample. Expand the code fragment to make it compilable and runnable, thereby including all of the details that were left out of the specification for clarity.<br>
+    If the specification has a "What's new for Java EE 9 " section, with a bullet list of new features, then that bullet list is a good source for creating samples. Create one sample for each bullet item in the list. However, the samples should demonstrate something that is non-obvious; if a new feature is completely obvious from the description in the specification, then a sample is not needed. This part of the sample design is really a judgment call.</li>
+  <li>The Java EE 9 samples should:
+  <ul type="circle">
+    <li>Use only Java EE standard APIs. 3rd party frameworks or implementation-specific features must <b>not</b> be used.</li>
+    <li>Use good programming practices:</li>
+    <ol start="1" type="1">
+      <li>Add comments to explain your code.</li>
+      <li>Format your code correctly.</li>
+      <li>Use descriptive names for classes, fields, and methods.</li>
+      <li>Make sure IDEs such as Eclipse and NetBeans don't show errors when opening up the project (editor should be "green" in NetBeans)</li>
+    </ol>
+    <li>Show discreet major features. It's better to have three samples, each showing a single major feature, than a single sample that shows three major features.</li>
+    <li>Make the sample as simple as possible. Samples aren't case-studies, and don't need to mimic real-world examples.</li>
+    <li>Show off the Java EE 9 platform. Avoid using outdated technologies (like JSP). Don't configure the sample in deployment descriptors if annotations can be used instead. If a Java EE 9 API can be used to ease development, use it! For example, use session beans to provide the business logic in a sample, use CDI beans instead of JSF managed beans in web applications, and use Bean Validation constraints when validating input.</span></li>
+  </ul></li>
+  <li>Samples should be similar to each other where possible. Before writing a sample, familiarize yourself with the other Jakarta EE 9 samples so that your sample is similar.</span></li>
+  <li>It is important that each sample application is provided with appropriate documentation.</li>
+  <li>Refer to the existing representative sample <span><code>message-board-war</code></span> under the <span><code>jakartaee9/rest</code></span> directory to understand the directory structure, build scripts, test code, documentation.</li>
+  <li>For guidelines on documenting the sample, refer to the representative sample <span><code>hello-stateless-ejb</code></span>, which is documented using the <span><code>sample_doc_template.html</code></span> file.</li>
+  <li>Each sample application needs one or more test cases so that the sample applications go through some regular testing like glassfish to notice any regressions and for the purposes of promoting the samples bundle. Refer to the test directory of representative sample <span><code> hello-stateless-ejb</code></span> for information.</li>
+  <li>Set up the Java database and configure the JDBC resources.</li>
+  <li>Make sure that the sample works with Netbeans IDE.</li>
+  <li>Once the sample application development, testing and documentation is complete, start a <a href="https://github.com/javaee/glassfish-samples/pulls">Pull Request</a> to push your changes.</li>
+</ol>
+<p>
+</body>
+</html>

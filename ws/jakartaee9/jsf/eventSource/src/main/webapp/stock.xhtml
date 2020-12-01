@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h5="http://java.sun.com/jsf/composite/h5"
+      xmlns:ez="http://java.sun.com/jsf/composite/stockinfo">
+   <h:head>
+      <meta charset="UTF-8" />
+   </h:head>
+
+   <h:body style="background: #fefeef">
+
+      <h:form>
+         <h:panelGrid styleClass="title-panel">
+           <h:panelGrid columns="2" cellpadding="20">
+              <h:outputText value="S t o c k V i e w" styleClass="title-panel-text"/>
+           </h:panelGrid>
+           <h:outputText value="Powered By JavaServer Faces 2.1 and Html 5 Server Sent Events " 
+              styleClass="title-panel-subtext"/>
+         </h:panelGrid>
+
+         <h:outputStylesheet name="stylesheet.css" />
+
+         <h5:sse url="/JSFStockTicker/sse/stockticker" events="{stock:stockHandler,time:clockHandler,rss:rssHandler}"/>
+
+         <br/>
+
+         <ez:clock/>
+
+         <br/>
+         <br/>
+
+         <ez:stockMonitor/>
+
+         <ez:rss symbols="#{stockTickerBean.symbols}"/>
+
+         <h:messages/>
+
+     </h:form>
+
+<a href="doc.xhtml">Documentation</a>
+</h:body>
+</html>

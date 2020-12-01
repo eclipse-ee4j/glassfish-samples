@@ -1,0 +1,103 @@
+/*
+ * Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+package org.glassfish.movieplex8.client;
+
+import java.io.Serializable;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
+
+import org.glassfish.movieplex8.entities.Movie;
+import org.glassfish.movieplex8.json.MovieWriter;
+
+/**
+ * @author Arun Gupta
+ */
+@Named
+@SessionScoped
+public class MovieClientBean implements Serializable {
+
+    @Inject
+    MovieBackingBean bean;
+    
+    Client client;
+    WebTarget target;
+
+    @PostConstruct
+    public void init() {
+        client = ClientBuilder.newClient();
+        target = client
+                .target("http://localhost:8080/movieplex7/webresources/movie/");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        client.close();
+    }
+
+    public Movie[] getMovies() {
+        return target
+                .request()
+                .get(Movie[].class);
+    }
+
+    public Movie getMovie() {
+        Movie m = target
+                .path("{movie}")
+                .resolveTemplate("movie", bean.getMovieId())
+                .request()
+                .get(Movie.class);
+        return m;
+    }
+
+    public Movie getMovieJson() {
+        Movie m = target
+                .path("{movie}")
+                .resolveTemplate("movie", bean.getMovieId())
+                .request(MediaType.APPLICATION_JSON)
+                .get(Movie.class);
+        return m;
+    }
+
+    public void addMovie() {
+        Movie m = new Movie();
+        m.setId(bean.getMovieId());
+        m.setName(bean.getMovieName());
+        m.setActors(bean.getActors());
+        target
+                .register(MovieWriter.class)
+                .request()
+                .post(Entity.entity(m, MediaType.APPLICATION_JSON));
+    }
+
+    @Transactional
+    public void deleteMovie() {
+        target
+                .path("{movieId}")
+                .resolveTemplate("movieId", bean.getMovieId())
+                .request()
+                .delete();
+    }
+}

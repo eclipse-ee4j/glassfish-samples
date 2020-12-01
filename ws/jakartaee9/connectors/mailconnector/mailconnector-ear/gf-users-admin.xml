@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 	Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+<project name="mailconnector-ear" default="create-users" basedir=".">
+
+    <target name="tools">
+        <condition property="javaee-script-suffix" value=".bat">
+            <os family="windows" />
+        </condition>
+        <condition property="javaee-script-suffix" value="">
+            <not>
+                <os family="windows" />
+            </not>
+        </condition>
+        <property name="asadmin" value="${gf4.bin.dir}/asadmin${javaee-script-suffix}" />
+        <echo>${gf4.bin.dir}</echo>
+        <chmod perm="a+x" osfamily="unix" dir="${gf4.bin.dir}/" includes="*"/>
+    </target>
+
+    <target name="create-single-user" description="create file-realm user" depends="tools">
+
+        <echo message="Generating key for user ${app.user} in server." />
+
+        <!-- generate temporary password file -->
+        <property name="user.password.file" value="asadminuserpassword.txt" />
+        <delete file="${user.password.file}" failonerror="false" />
+        <loadproperties srcFile="${admin.password.file}" />
+
+        <!-- By default, the password is equals to user name -->
+        <condition property="app.password" value="${app.user}">
+            <not>
+                <isset property="app.password"/>
+            </not>
+        </condition>
+
+        <!-- do not format the following echo which is intentional -->
+        <echo file="${user.password.file}" append="false">AS_ADMIN_USERPASSWORD=${app.password}
+            AS_ADMIN_PASSWORD=${AS_ADMIN_PASSWORD}
+        </echo>
+
+        <exec executable="${asadmin}">
+            <arg line=" create-file-user" />
+            <arg line=" --user admin" />
+            <arg line=" --passwordfile '${user.password.file}'" />
+            <arg line=" --host localhost" />
+            <arg line=" --port 4848" />
+            <arg line=" --groups ${app.groups}" />
+            <arg line=" ${app.user}" />
+        </exec>
+        <delete file="${user.password.file}" failonerror="false" />
+    </target>
+
+    <target name="create-users">
+        <antcall target="create-single-user">
+            <param name="app.user" value="leo" />
+            <param name="app.password" value="leo" />
+            <param name="app.groups" value="employee" />
+        </antcall>
+
+        <antcall target="create-single-user">
+            <param name="app.user" value="tom" />
+            <param name="app.password" value="tom" />
+            <param name="app.groups" value="employee" />
+        </antcall>
+
+        <antcall target="create-single-user">
+            <param name="app.user" value="mike" />
+            <param name="app.password" value="mike" />
+            <param name="app.groups" value="employee" />
+        </antcall>
+
+        <antcall target="create-single-user">
+            <param name="app.user" value="george" />
+            <param name="app.password" value="george" />
+            <param name="app.groups" value="employee" />
+        </antcall>
+    </target>
+
+</project>
