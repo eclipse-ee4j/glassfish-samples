@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+
+    Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsfcomps="http://www.java.net/scrumtoys/jsfcomps" 
+      xmlns:appez="http://xmlns.jcp.org/jsf/composite/components" >
+<h:head>
+    <title>#{"Burndown"}</title>
+    <h:outputStylesheet library="css/1_1" name="app.css"/>
+</h:head>
+<h:body>
+    <h:outputScript library="javax.faces" name="ajax.js" target="head"/>
+	<h:messages errorClass="errorMsgs" infoClass="infoMsgs" />
+	<appez:title id="tituloDashboard" text="#{'Burndown'}" />
+	<h:form>
+		<h:outputLabel value="Sprint:" for="somSprints" />
+		<h:selectOneMenu id="somSprints" value="#{burndownMB.selectedSprintId}">
+			<f:selectItems value="#{burndownMB.siSprints}"/>
+		</h:selectOneMenu>
+		<h:message for="somSprints" />
+		<h:commandButton action="#{burndownMB.update}" value="Update" />
+		<h:panelGrid columns="1">
+		<h:outputText value="#{burndownMB.selectedSprint.name}" />
+		<jsfcomps:burndown value="#{burndownMB.selectedSprint}" />
+		<jsfcomps:test />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

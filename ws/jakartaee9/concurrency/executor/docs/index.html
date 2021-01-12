@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--
+ 	Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+    <meta content="text/html; charset=ISO-8859-1"
+          http-equiv="content-type">
+    <title>The Executor Concurrency Sample Application</title>
+    <style type="text/css">
+        body, th, td, p, div, span, a, ul, ul li, ol, ol li, ol li b, dl, h1, h2, h3, h4, h5, h6, li {
+            font-family: geneva, helvetica, arial, "lucida sans", sans-serif;
+            font-size: 10pt
+        }
+
+        h1 {
+            font-size: 18pt
+        }
+
+        h2 {
+            font-size: 14pt
+        }
+
+        h3 {
+            font-size: 12pt
+        }
+
+        code, kbd, tt, pre {
+            font-family: monaco, courier, "courier new";
+            font-size: 10pt;
+            color: #666
+        }
+
+        li {
+            padding-bottom: 8px
+        }
+
+        p.copy, p.copy a {
+            font-family: geneva, helvetica, arial, "lucida sans", sans-serif;
+            font-size: 8pt
+        }
+
+        p.copy {
+            text-align: center
+        }
+    </style>
+    <style>
+        .created {
+            color: green
+        }
+
+        .uniqueId {
+            color: red
+        }
+
+        .message {
+            color: black
+        }
+    </style>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+      alink="#333366" link="#594fbf" vlink="#1005fb">
+<table border="0" cellpadding="2" cellspacing="4" width="100%">
+    <tbody>
+    <tr>
+        <td align="right" bgcolor="#587993" valign="top"><font
+                color="#ffffff" size="-1"><b>Jakarta EE 9 SDK</b></font>&nbsp;
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!--- Do not modify anything above this line, except for the title tag --->
+<p><a href="../../../docs/list.html">Samples Main Page</a></p>
+
+<h1>The Executor Concurrency Sample Application</h1>
+
+<p>This sample demonstrates how to use <code>jakarta.enterprise.concurrent.ManagedExecutorService</code> for submitting tasks.</p>
+
+<h2>Description</h2>
+<p>The demo contains a collection of servlets that show how to use methods from the <code>ManagedExecutorService</code>
+   interface to submit tasks to be processed asynchronously.</p>
+<p>
+   All the sample servlets in this demo use the
+   default <code>ManagedExecutorService</code> as defined in the Concurrency Utilities for Java EE 1.0 specification which is
+   available in all compliant Java EE Products. Thus no special configuration is required.</p>
+
+<p>The following is a list of servlets included in this demo:</p>
+<table border="1">
+    <tbody>
+    <tr>
+        <th>URI pattern</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>/TestResourceServlet</td>
+        <td>Submit tasks using a <code>ManagedExecutorService</code> retrieved using <code>@Resource</code> 
+		in a servlet, using the <code>execute()</code> and <code>submit()</code> methods.</td>
+    </tr>
+    <tr>
+        <td>/TestJNDIServlet</td>
+        <td>Submit tasks using a <code>ManagedExecutorService</code> retrieved using JNDI 
+		lookup in a servlet, using the <code>execute()</code> and <code>submit()</code> methods.</td>
+    </tr>
+    <tr>
+        <td>/TestEJBServlet</td>
+        <td>Submit tasks using a <code>ManagedExecutorService</code> in an EJB session bean, 
+		using the <code>sumbit()</code> method.</td>
+    </tr>
+    <tr>
+        <td>/TestInvokeAllServlet</td>
+        <td>Submit a collection of tasks using the <code>invokeAll()</code> method in 
+		<code>ManagedExecutorService</code>, and wait for all tasks to complete.</td>
+    </tr>
+    <tr>
+        <td>/TestInvokeAnyServlet</td>
+        <td>Submit a collection of tasks using the <code>invokeAny()</code> method in 
+		<code>ManagedExecutorService</code>, and wait for the first task to complete.</td>
+    </tr>
+    <tr>
+        <td>/TestListenerServlet</td>
+        <td>Submit a <code>ManagedTask</code> with a <code>ManagedTaskListener</code> to 
+		receive task lifecycle callbacks.</td>
+    </tr>
+    <tr>
+        <td>/TestTransactionServlet</td>
+        <td>Submit tasks that make use of <code>jakarta.transaction.UserTransaction</code>.</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<p> The application is built and deployed as a WAR file.
+</p>
+
+
+<h2>Key Features</h2>
+<ul>
+    <li>Lookup of <code>ManagedExecutorService</code> from servlets and EJBs</li>
+    <li>Use of the <code>submit()</code>, <code>execute()</code>, <code>invokeAll()</code>, 
+	    <code>invokeAny()</code> methods in <code>ManagedExecutorService</code></li>
+    <li>Use of <code>ManagedTaskListener</code> to receive task lifecycle notifications</li>
+    <li>Perform JNDI lookup from a task</li>
+    <li>Transaction demarcation using <code>jakarta.transaction.UserTransaction</code> from a task</li>
+</ul>
+
+<h2>Building, Deploying, and Running the Application</h2>
+<!-- Modify this section as needed -->
+<p>Perform the following steps to build, deploy, and run the application:</p>
+<ol>
+    <li> Set up your build environment and configure the application server with which the build system has to work by following
+        the <a href="../../../docs/UserREADME.html">common build instructions.</a></li>
+    <li><code><i>samples_install_dir</i></code> is the sample application base directory. Go to: <code><i>samples_install_dir</i>/jakartaee9/concurrency/executor</code>.
+    </li>
+    <li>Build, deploy, and run the sample application using the <code>run</code> outcome.
+        <p><code>mvn clean verify cargo:run</code></p>
+    </li>
+    <li>The front page of this sample is at <code>http://localhost:8080/executor</code><br>
+        (the port number might vary).
+    </li>
+    <li>Use the <code>clean</code> outcome to undeploy the sample application and to remove the temporary directories such as
+        <code>build</code> and <code>dist</code>.
+        <p><code>mvn clean</code></p>
+    </li>
+</ol>
+
+<h2>Troubleshooting</h2>
+
+<p>If you have problems when running the application, refer to the <a href="../../../docs/UserTroubleShooting.html">troubleshooting
+    document</a>.</p>
+<br>
+
+</p>
+&nbsp;
+ 
+</body>
+</html>

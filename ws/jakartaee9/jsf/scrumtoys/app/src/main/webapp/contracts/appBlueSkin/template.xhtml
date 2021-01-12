@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:scrum="http://xmlns.jcp.org/jsf/composite/components">
+
+    <h:head>
+        <h:outputStylesheet name="appBlueSkin.css"/>
+        <h:outputStylesheet name="common.css"/>
+        <h:outputScript     library="js" name="menu.js" target="head"/>
+        <h:outputScript     library="javax.faces" name="jsf.js"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>
+            <ui:insert name="pageTitle">
+                <h:outputText value="#{i18n['template.title']}"></h:outputText>
+            </ui:insert>
+        </title>
+    </h:head>
+
+    <h:body>
+        <div align="center">
+            <h:panelGrid  width="990">
+                <scrum:menu>
+                    <ui:param name="image" value="/resources/images/menu/barraSuperior-04.png"></ui:param>
+                </scrum:menu>
+                <h:form id="navigationBar">
+                    <div class="navBarClass">
+                        <h:panelGrid columns="3" rendered="#{authManager.username != null}">
+                            <h:outputText value="User: " />
+                            <h:outputText value="#{authManager.username}" />
+                            <h:commandLink id="logout" value="Logout" action="#{authManager.logout}" />
+                        </h:panelGrid>
+                        <br/>
+                        <ui:insert name="navigationBar"></ui:insert>
+                    </div>
+                </h:form>
+
+                <h:panelGrid columns="1"  headerClass="tableHeader" footerClass="tableFooter" cellpadding="0" cellspacing="0">
+                    <f:facet name="header">
+                        <h:outputText value=""></h:outputText>
+                    </f:facet>
+
+                    <table class="tableBody"><tr><td>
+                        <table align="center">
+                            <tr><td>
+                                    <ui:insert name="content"></ui:insert>
+                            </td></tr>
+                        </table>
+                    </td></tr></table>
+
+
+                    <f:facet name="footer">
+                        <h:graphicImage value="/resources/images/lousaNova/quadroNegro_botton_990x120.png" ></h:graphicImage>
+                    </f:facet>
+                </h:panelGrid>
+
+                <h:panelGroup>
+                    <ui:include src="./footer.xhtml" />
+                </h:panelGroup>
+            </h:panelGrid>
+        </div>
+    </h:body>
+</html>  

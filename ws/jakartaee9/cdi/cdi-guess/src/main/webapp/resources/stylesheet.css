@@ -1,0 +1,77 @@
+/*
+ * Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+.title-panel {
+    background-image: url('bgblack18.jpg.jsf');
+    height: 80px;
+    width: 900px;
+}
+
+.title-panel-text {
+    color: white;
+    font-family: 'Georgia','Times New Roman','times',serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.instruction-text {
+    color: black;
+    font-family: 'Georgia','Times New Roman','times',serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.title-panel-subtext {
+    color: white;
+    font-family: 'Georgia','Times New Roman','times',serif;
+    font-size: 14px;
+    font-style: italic
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.panel-input-border {
+    border: 2px outset blue;
+    background-color: #e0eeee;
+}
+
+.panel-data-border {
+    border: 3px outset blue;
+    background-color: #e0eeee;
+}
+
+.keytitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #330066;
+}
+
+.ticker {
+    position: relative;
+    visibility: hidden;
+    font-size: 16px;
+}
+
+.serialize-border {
+    border: 4px outset red;
+}
+
+.queueCell {
+    background-color: #00ffff;
+}

@@ -1,0 +1,104 @@
+<!--
+
+    Copyright (c) 2019, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+</h:head>
+
+<h:outputStylesheet name="stylesheet.css" target="head"/>
+
+<h:form p:oninput="calculateProgress()" prependId="false">
+
+    <p>
+         <label>Name (First Last):</label>
+         <br/>
+         <input type="text" jsf:id="full_name" name="full_name" placeholder="John Doe" 
+           value="#{bean.name}" required="required"/>
+    </p>
+    <p>
+         <label>Email:</label>
+         <br/>
+         <input type="email" jsf:id="email" name="email" value="#{bean.email}" required="required"/>
+    </p>
+    <p>
+         <label>Enter Email Again:</label>
+         <br/>
+         <input type="email" jsf:id="emailAgain" name="emailAgain" value="#{bean.emailAgain}"
+          required="required" oninput="check(this)"/>
+    </p>
+    <p>
+         <label>Date Of Arrival:</label>
+         <br/>
+         <input type="date" jsf:id="arrival" name="arrival" value="#{bean.arrival}" required="required"/>
+    </p>
+    <p>
+        <label>Number Of Nights:</label>
+        <br/>
+        <h:inputText id="nights" p:type="number" value="#{bean.nights}" p:min="1" p:max="30" p:required="required" 
+           p:title="Enter a number between 1 and 30 inclusive.">
+           <f:ajax event="change" render="total" listener="#{bean.calculateTotal}"/>
+        </h:inputText>
+    </p>
+    <p>
+        <label>Number Of Guests:</label>
+        <br/>
+        <input jsf:id="guests" type="number" value="#{bean.guests}" min="1" max="4" required="required" 
+           title="Enter a number between 1 and 4 inclusive.">
+           <f:ajax event="change" render="total" listener="#{bean.calculateTotal}"/>
+        </input>
+    </p>
+    <p>
+        <label>Estimated Total:</label>
+        <br/>
+        <output jsf:id="total" name="total">#{bean.totalValue}</output>
+    </p>
+    <p>
+        <h:commandButton value="Make Reservation" action="confirmation"/>
+        <input jsf:id="clear" name="clear" value="Clear" type="submit">
+           <f:ajax render="@all" listener="#{bean.clear}"/>
+        </input>
+    </p>
+    <p>
+        <progress jsf:id="progressBar" max="100" value="0"/>
+    </p>
+
+</h:form>
+    
+<script>
+function check(input) {
+    if (input.value != document.getElementById('email').value) {
+        input.setCustomValidity('The two email addresses must match.');
+    } else {
+        // input is valid -- reset the error message
+        input.setCustomValidity('');
+    }
+}
+
+function calculateProgress() {
+    var bar = document.getElementById("progressBar");
+    bar.value += 5;
+}
+</script>
+
+</html>
