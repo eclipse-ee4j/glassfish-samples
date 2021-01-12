@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--
+ 	Copyright (c) 2019 Oracle and/or its affiliates. All rights reserved.
+	
+	This program and the accompanying materials are made available under the
+	terms of the Eclipse Public License v. 2.0, which is available at
+	http://www.eclipse.org/legal/epl-2.0.
+	
+	This Source Code may also be made available under the following Secondary
+	Licenses when the conditions for such availability set forth in the
+	Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+	version 2 with the GNU Classpath Exception, which is available at
+	https://www.gnu.org/software/classpath/license.html.
+	
+	SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+-->
+
+  <title>The Automatic Timer EJB Sample Application (Test Client)</title>
+	<style type="text/css">
+      body,th,td,p,div,span,a,ul,ul li, ol, ol li, ol li b, dl,h1,h2,h3,h4,h5,h6,li
+      {font-family:geneva,helvetica,arial,"lucida sans",sans-serif; font-size:10pt}
+      h1 {font-size:18pt}
+      h2 {font-size:14pt}
+      h3 {font-size:12pt}
+      code,kbd,tt,pre {font-family:monaco,courier,"courier new";font-size:10pt;color:#666}
+      li {padding-bottom: 8px}
+      p.copy, p.copy a {font-family:geneva,helvetica,arial,"lucida sans",sans-serif; font-size:8pt}
+      p.copy {text-align: center}
+  </style>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+      alink="#333366" 
+      link="#594fbf" 
+      marginwidth="10" 
+      vlink="#1005fb">
+<table border="0" cellpadding="2" cellspacing="4" width="100%">
+  <tbody>
+    <tr>
+      <td align="right" bgcolor="#587993" valign="top"> <font
+ 					color="#ffffff" size="-1"><b>Jakarta  EE 8 SDK</b></font>&nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!---- Don't modify anything above this line, except for the title tag -------->
+<p><a href="../../../../docs/list.html">Samples Main Page</a></p>
+<h1>The Automatic Timer EJB Sample Application (Test Client)</h1>
+<p>This is the standalone Java client for a simple EJB module that demonstrates how to use the EJB automatic timer.</p>
+
+<h2>Description</h2>
+<p>This sample application consists of two parts: an <a href="../../automatic-timer-server/docs/index.html">EJB module</a> and a 
+test client (this project). The rest of this document describes the test client.</p>
+
+<p>
+<code>AutomaticTimerJavaClient</code> is a client that runs outside of a Java EE container.
+In this case, the client performs a global JNDI lookup since dependency injection is not
+available outside of a Java EE environment.
+</p>
+
+<p><b>Standalone Java Client</b></p>
+
+<pre>
+public class AutomaticTimerJavaClient {
+    public static void main(String args[]) {
+        try {
+            StatelessSession sless = (StatelessSession)
+                                      ic.lookup("java:global/automatic-timer-ejb/StatelessSessionBean");
+            System.out.println("Waiting for the timer to expire");
+            Thread.sleep(7000);
+            List&lt;String&gt; result = sless.getRecords();
+            System.out.println("Got " + result.size() + " log records:");
+            for (String s : result) {
+                System.out.println(s);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+</pre>
+
+<h2>Building, Deploying, and Running the Java Client<br></h2>
+<p>Since this is the client of <code>automatic-timer-server</code>, so please first go to <code><i>samples_install_dir</i>/jakartaee8/ejb/automatic-timer/automatic-timer-server</code>, and run the instructions described in section "Building, Deploying, and Running the Application" in <a href="../../automatic-timer-server/docs/index.html">the sample's document</a>. <br><br>Following are the instructions for building and running
+the Java Client.<br>
+<br>
+</p>
+<ol>
+  <li> Setup your build environment and Configure the application
+server with which the build system has to work by following the <a href="../../../../docs/UserREADME.html">
+common build instructions.</a></li>
+  <li><code><i>app_dir</i></code> is the sample application base
+directory: <code><i>samples_install_dir</i>/jakartaee8/ejb/automatic-timer/automatic-timer-client</code>.</li>
+  <li><code></code><code></code>Change directory to <code><i>app_dir.</i></code></li>
+  <li>Make sure that the database has been started up and the project automatic-timer-server has been built and deployed. <br>
+  </li>
+  <li>Build and Run the standalone client.<p><code>mvn clean verify exec:java</code></p></li>
+</ol>
+<h2>Troubleshooting</h2>
+<p>If you have problems when running the application, refer to the <a href="../../../../docs/UserTroubleShooting.html">troubleshooting document</a>.</p>
+<br>
+ 
+</body>
+</html>
